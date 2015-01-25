@@ -4,7 +4,7 @@
 DISTNAME=	nspluginwrapper-1.4.4
 CATEGORIES=	www
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
-		http://download.opensuse.org/distribution/12.1/repo/oss/suse/x86_64/ 
+		http://download.opensuse.org/distribution/12.1/repo/oss/suse/x86_64/
 DISTFILES=	${DISTNAME}.tar.gz ${DISTNAME}-2.2.1.x86_64.rpm
 
 MAINTAINER=	abs@NetBSD.org
