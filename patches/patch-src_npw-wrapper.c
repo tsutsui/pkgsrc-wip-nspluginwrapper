@@ -1,6 +1,10 @@
+$NetBSD$
+
+The Linux nspluginwrapper-1.4.4 binaries seems built USE_ANONYMOUS_SOCKETS
+enabled. In that case we have to handle socket path rename for plugin side
+in npw_wrappwer.c and libnoanonsocket.so wrapper library.
+
 --- src/npw-wrapper.c.orig	2012-11-14 16:01:37.000000000 +0100
-+++ src/npw-wrapper.c	2012-11-14 16:00:38.000000000 +0100
---- src/npw-wrapper.c.orig	2011-07-01 03:18:57.000000000 +0000
 +++ src/npw-wrapper.c
 @@ -3867,6 +3867,32 @@ static void plugin_init(int is_NP_Initia
  					NPW_CONNECTION_PATH, plugin_file_name,

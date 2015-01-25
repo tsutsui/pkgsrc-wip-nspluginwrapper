@@ -1,5 +1,11 @@
---- src/rpc.c.orig	2011-07-01 05:18:57.000000000 +0200
-+++ src/rpc.c	2012-11-17 12:14:16.000000000 +0100
+$NetBSD$
+
+The Linux nspluginwrapper-1.4.4 binaries seems built USE_ANONYMOUS_SOCKETS
+enabled. In that case we have to handle socket path rename for plugin side
+in npw_wrappwer.c and libnoanonsocket.so wrapper library.
+
+--- src/rpc.c.orig	2012-11-14 16:01:37.000000000 +0100
++++ src/rpc.c
 @@ -609,16 +609,7 @@
  #if USE_ANONYMOUS_SOCKETS
    n = 0;

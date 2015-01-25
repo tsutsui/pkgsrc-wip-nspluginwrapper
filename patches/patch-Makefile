@@ -1,5 +1,11 @@
+$NetBSD$
+
+The Linux nspluginwrapper-1.4.4 binaries seems built USE_ANONYMOUS_SOCKETS
+enabled. In that case we have to handle socket path rename for plugin side
+in npw_wrappwer.c and libnoanonsocket.so wrapper library.
+
 --- Makefile.orig	2011-07-01 05:18:57.000000000 +0200
-+++ Makefile	2012-11-17 11:32:25.000000000 +0100
++++ Makefile
 @@ -151,6 +151,12 @@
  libnoxshm_CFLAGS  = $(CFLAGS_32) $(PIC_CFLAGS)
  libnoxshm_LDFLAGS = $(LDFLAGS_32)
