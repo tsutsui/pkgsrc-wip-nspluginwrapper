@@ -1,3 +1,7 @@
+/*
+ * This file is originally written by Onno van der Linden in PR pkg/47208:
+ *  http://gnats.NetBSD.org/47208
+ */
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <string.h>
@@ -5,10 +9,11 @@
 #include <dlfcn.h>
 
 struct osockaddr_un {
-        uint16_t        sa_family;      /* address family */
-        char            sun_path[108];    /* up to 108 bytes of direct address */
+	uint16_t	sa_family;	/* address family */
+	char		sun_path[108];	/* up to 108 bytes of direct address */
 };
 
+/* See nspluginwrapper-1.4.4/src/rpc.c */
 struct rpc_connection {
   int type;
   int refcnt;
@@ -22,21 +27,23 @@ struct rpc_connection {
 };
 
 
-int	(*bindfunc)(int, const struct sockaddr *, int) = NULL;
+static int (*bindfunc)(int, const struct sockaddr *, int) = NULL;
 
 int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen)
 {
 	struct osockaddr_un	*sun;
 
 	if (bindfunc == NULL) {
-		bindfunc = dlsym(RTLD_NEXT,"bind");
+		bindfunc = dlsym(RTLD_NEXT, "bind");
 		if (bindfunc == NULL)
 			return -1;
 	}
 	sun = (struct osockaddr_un *) my_addr;
-	if (sun != NULL && sun->sa_family == AF_LOCAL && sun->sun_path[0] == '\0') {
+	if (sun != NULL &&
+	    sun->sa_family == AF_LOCAL &&
+	    sun->sun_path[0] == '\0') {
 		int len;
-		struct rpc_connection	*conn;
+		struct rpc_connection *conn;
 
 		/*
 		 * In nspluginwrapper-1.4.4 Linux binaries
@@ -47,12 +54,12 @@ int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen)
 		 * See _rpc_socket_path() in nspluginwrapper-1.4.4/src/rpc.c
 		 * for details.
 		 */
-
-		conn = (uint8_t *)my_addr - offsetof(struct rpc_connection, socket_addr);
+		conn = (uint8_t *)my_addr
+		    - offsetof(struct rpc_connection, socket_addr);
 		len = strlen(&conn->socket_path[1]) + 1;
 		memmove(conn->socket_path, &conn->socket_path[1], len);
 		len = strlen(&sun->sun_path[1]) + 1;
 		memmove(sun->sun_path, &sun->sun_path[1], len);
 	}
-	return bindfunc(sockfd, my_addr, addrlen);
+	return (*bindfunc)(sockfd, my_addr, addrlen);
 }
