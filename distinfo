@@ -1,0 +1,16 @@
+$NetBSD$
+
+SHA1 (nspluginwrapper-1.4.4-2.2.1.x86_64.rpm) = 5165160126bc2d853aa03da68ff292c451cf7005
+RMD160 (nspluginwrapper-1.4.4-2.2.1.x86_64.rpm) = 630136113810ac9eb9cf76611a52be898d606cdf
+Size (nspluginwrapper-1.4.4-2.2.1.x86_64.rpm) = 160203 bytes
+SHA1 (nspluginwrapper-1.4.4.tar.gz) = ffb271a741215874808d4a77d0a0dd65588a8440
+RMD160 (nspluginwrapper-1.4.4.tar.gz) = 6acd93653aa8466e1e3703c2b794f32691c10d12
+Size (nspluginwrapper-1.4.4.tar.gz) = 412513 bytes
+SHA1 (patch-Makefile) = 103c8cd5403cb8895dc5096be9b9d978a71afce0
+SHA1 (patch-aa) = 28f9e18e519337852cb47d04ed0c1cea76b3416d
+SHA1 (patch-ab) = 20dc1b6ff4036a0946dd469860eb9b6c129fdb7a
+SHA1 (patch-ac) = f85d793564dc23465c94e30af6d5c3c67bdee0e1
+SHA1 (patch-src_npw-player.c) = d6f6ffa71e920b06710b24b1e31938056fb3d8e1
+SHA1 (patch-src_npw-wrapper.c) = 6801b6817d5e85d0ed3f2548be247a657c98daa9
+SHA1 (patch-src_rpc.c) = 00e41894abe3e3587d70c6398461dd8143faa5a3
+SHA1 (patch-src_sysdeps.h) = 097cc04320f236b151e4685d742abaf0581108f5

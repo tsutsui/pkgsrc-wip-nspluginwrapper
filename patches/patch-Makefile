@@ -1,0 +1,36 @@
+--- Makefile.orig	2011-07-01 05:18:57.000000000 +0200
++++ Makefile	2012-11-17 11:32:25.000000000 +0100
+@@ -151,6 +151,12 @@
+ libnoxshm_CFLAGS  = $(CFLAGS_32) $(PIC_CFLAGS)
+ libnoxshm_LDFLAGS = $(LDFLAGS_32)
+ 
++libnoanonsocket_LIBRARY = libnoanonsocket.so
++libnoanonsocket_RAWSRCS = libnoanonsocket.c
++libnoanonsocket_SOURCES = $(libnoanonsocket_RAWSRCS:%.c=$(SRC_PATH)/src/%.c)
++libnoanonsocket_OBJECTS = $(libnoanonsocket_RAWSRCS:%.c=libnoanonsocket-%.o)
++libnoanonsocket_CFLAGS  = $(CFLAGS_32) $(PIC_CFLAGS)
++
+ npconfig_PROGRAM = npconfig
+ npconfig_RAWSRCS = npw-config.c
+ npconfig_SOURCES = $(npconfig_RAWSRCS:%.c=$(SRC_PATH)/src/%.c)
+@@ -193,6 +199,7 @@
+ TARGETS		= $(npconfig_PROGRAM)
+ TARGETS		+= $(nploader_PROGRAM)
+ TARGETS		+= $(npwrapper_LIBRARY)
++TARGETS		+= $(libnoanonsocket_LIBRARY)
+ ifeq ($(build_viewer),yes)
+ TARGETS		+= $(npviewer_PROGRAM)
+ TARGETS		+= $(libnoxshm_LIBRARY)
+@@ -323,6 +330,12 @@
+ libnoxshm-%.o: $(SRC_PATH)/src/%.c
+ 	$(CC) -o $@ -c $< $(CPPFLAGS) $(libnoxshm_CFLAGS)
+ 
++$(libnoanonsocket_LIBRARY): $(libnoanonsocket_OBJECTS)
++	$(LD) $(DSO_LDFLAGS) -o $@ $(libnoanonsocket_OBJECTS)
++
++libnoanonsocket-%.o: $(SRC_PATH)/src/%.c
++	$(CC) -o $@ -c $< $(CPPFLAGS) $(libnoxshm_CFLAGS)
++
+ $(npconfig_PROGRAM): $(npconfig_OBJECTS)
+ 	$(CC) $(npconfig_LDFLAGS) -o $@ $(npconfig_OBJECTS) $(npconfig_LIBS)
+ 
