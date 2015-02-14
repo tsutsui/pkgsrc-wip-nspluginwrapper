@@ -27,6 +27,11 @@ PLUGIN_SRCDIR=		${WRKDIR}/usr/${PLUGIN_SUBDIR}
 
 LDFLAGS.DragonFly=	-lgmodule-2.0
 
+SUBST_CLASSES+=		npw-config
+SUBST_STAGE.npw-config=	post-patch
+SUBST_FILES.npw-config=	src/npw-config.c
+SUBST_SED.npw-config=	-e "s|/usr/pkg/|${PREFIX}/|g"
+
 SUBST_CLASSES+=		npviewer
 SUBST_STAGE.npviewer=	post-build
 SUBST_FILES.npviewer=	${PLUGIN_SRCDIR}/npviewer
