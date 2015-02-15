@@ -4,15 +4,15 @@
 DISTNAME=	nspluginwrapper-1.4.4
 CATEGORIES=	www
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
-		http://download.opensuse.org/distribution/12.1/repo/oss/suse/x86_64/
-DISTFILES=	${DISTNAME}.tar.gz ${DISTNAME}-2.2.1.x86_64.rpm
+		http://teokurebsd.org/netbsd/packages/distfiles/nspluginwrapper
+DISTFILES=	${DISTNAME}.tar.gz ${DISTNAME}-suse121-generic.${WRAPPER_ARCH}.tar.gz
 
 MAINTAINER=	abs@NetBSD.org
 HOMEPAGE=	http://nspluginwrapper.org/
 COMMENT=	Use Netscape compatible plugins from other platforms
 LICENSE=	gnu-gpl-v2
 
-EMUL_PLATFORMS=		linux-i386
+EMUL_PLATFORMS=		linux-i386 linux-x86_64
 EMUL_MODULES.linux=	base gtk2 x11
 NOT_FOR_PLATFORM=	Linux-*-*
 
@@ -21,7 +21,15 @@ USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake pkg-config
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
-PLUGIN_SUBDIR=		lib/nspluginwrapper/i386/linux
+.include "../../mk/bsd.prefs.mk"
+
+.if ${EMUL_PLATFORM} == "linux-i386"
+WRAPPER_ARCH=		i386
+.elif ${EMUL_PLATFORM} == "linux-x86_64"
+WRAPPER_ARCH=		x86_64
+.endif
+
+PLUGIN_SUBDIR=		lib/nspluginwrapper/${WRAPPER_ARCH}/linux
 PLUGIN_INSTDIR=		${PREFIX}/${PLUGIN_SUBDIR}
 PLUGIN_SRCDIR=		${WRKDIR}/usr/${PLUGIN_SUBDIR}
 
@@ -39,12 +47,8 @@ SUBST_SED.npviewer=	-e "s|/usr/|${PREFIX}/|g"
 
 INSTALLATION_DIRS=	${PLUGIN_INSTDIR}
 
-post-extract:
-	cp files/libnoanonsocket.c ${WRKDIR}/${DISTNAME}/src
-
 post-install:
 	${INSTALL_LIB} ${PLUGIN_SRCDIR}/libnoxshm.so ${DESTDIR}${PLUGIN_INSTDIR}
-	${INSTALL_LIB} ${WRKDIR}/${DISTNAME}/libnoanonsocket.so ${DESTDIR}${PLUGIN_INSTDIR}
 	${INSTALL_SCRIPT} ${PLUGIN_SRCDIR}/npviewer ${DESTDIR}${PLUGIN_INSTDIR}
 	${INSTALL_LIB} ${PLUGIN_SRCDIR}/npviewer.bin ${DESTDIR}${PLUGIN_INSTDIR}
 

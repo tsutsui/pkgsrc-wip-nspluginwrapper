@@ -4,8 +4,7 @@ bin/nspluginwrapper
 lib/nspluginwrapper/${MACHINE_ARCH}/${LOWER_OPSYS}/npconfig
 lib/nspluginwrapper/${MACHINE_ARCH}/${LOWER_OPSYS}/npplayer
 lib/nspluginwrapper/${MACHINE_ARCH}/${LOWER_OPSYS}/npwrapper.so
-lib/nspluginwrapper/i386/linux/libnoxshm.so
-lib/nspluginwrapper/i386/linux/libnoanonsocket.so
-lib/nspluginwrapper/i386/linux/npviewer
-lib/nspluginwrapper/i386/linux/npviewer.bin
+lib/nspluginwrapper/${MACHINE_ARCH}/linux/libnoxshm.so
+lib/nspluginwrapper/${MACHINE_ARCH}/linux/npviewer
+lib/nspluginwrapper/${MACHINE_ARCH}/linux/npviewer.bin
 lib/nspluginwrapper/noarch/npviewer.sh

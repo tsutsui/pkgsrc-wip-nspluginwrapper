@@ -12,8 +12,8 @@ in npw_wrappwer.c and libnoanonsocket.so wrapper library.
  
 +case $OS in
 +freebsd|netbsd)
-+    LD_PRELOAD=${NPW_VIEWER_DIR}/libnoanonsocket.so
-+    export LD_PRELOAD
++    # preset LD_PRELOAD is most likely for the native emul
++    unset LD_PRELOAD
 +    ;;
 +esac
 +
