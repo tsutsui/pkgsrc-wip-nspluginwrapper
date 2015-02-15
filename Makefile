@@ -4,7 +4,7 @@
 DISTNAME=	nspluginwrapper-1.4.4
 CATEGORIES=	www
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
-		http://teokurebsd.org/netbsd/packages/distfiles/nspluginwrapper
+		http://teokurebsd.org/netbsd/packages/distfiles/nspluginwrapper/
 DISTFILES=	${DISTNAME}.tar.gz ${DISTNAME}-suse121-generic.${WRAPPER_ARCH}.tar.gz
 
 MAINTAINER=	abs@NetBSD.org
