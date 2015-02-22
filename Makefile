@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v2
 
 EMUL_PLATFORMS=		linux-i386 linux-x86_64
 EMUL_MODULES.linux=	base gtk2 x11
+EMUL_REQD=		suse>=12.1
 NOT_FOR_PLATFORM=	Linux-*-*
 
 HAS_CONFIGURE=		yes
