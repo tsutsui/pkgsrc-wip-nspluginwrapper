@@ -12,3 +12,4 @@ Size (nspluginwrapper-1.4.4.tar.gz) = 412513 bytes
 SHA1 (patch-aa) = 28f9e18e519337852cb47d04ed0c1cea76b3416d
 SHA1 (patch-ab) = 20dc1b6ff4036a0946dd469860eb9b6c129fdb7a
 SHA1 (patch-ac) = 87cb838f6b203947d9efc4350313e410d06d486e
+SHA1 (patch-src_npw-viewer.c) = eb8855ae6d1015eb7627ada5c39af5e0d80f0e75
