@@ -1,4 +1,4 @@
-$NetBSD: patch-aa,v 1.5 2008/12/18 19:59:31 jmcneill Exp $
+$NetBSD: patch-aa,v 1.6 2009/09/16 10:16:58 abs Exp $
 
 --- src/npw-config.c.orig	2009-09-16 11:05:23.000000000 +0100
 +++ src/npw-config.c

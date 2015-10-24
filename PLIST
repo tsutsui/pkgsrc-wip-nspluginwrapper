@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2009/01/05 19:11:24 jmcneill Exp $
+@comment $NetBSD: PLIST,v 1.4 2009/06/14 22:00:29 joerg Exp $
 bin/nspluginplayer
 bin/nspluginwrapper
 lib/nspluginwrapper/${MACHINE_ARCH}/${LOWER_OPSYS}/npconfig
